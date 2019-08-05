@@ -7,3 +7,24 @@
 //
 
 import Foundation
+
+extension Date {
+    
+    //Get Previous day
+    static var yesterday: Date { return Date().dayBefore }
+    
+    var dayBefore: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    
+    //Get formatted day
+    func getFormattedDateAsString() -> String {
+        let dateFormatterGet = DateFormatter()
+        dateFormatterGet.dateFormat = "yyyy-MM-dd"
+        return dateFormatterGet.string(from: self)
+    }
+}
