@@ -10,10 +10,9 @@ import Foundation
 
 
 final class CurrencyListViewModel : CurrencyListViewModelProtocol {
-
     //MARK: Delegate
     var delegate: CurrencyListViewModelDelegate?
-    var currencyService: CurrencyService!
+    var currencyService: CurrencyServiceProtocol!
     var currencies = [Currency]()
     
     //Service injection will be here with protocols
@@ -53,6 +52,10 @@ final class CurrencyListViewModel : CurrencyListViewModelProtocol {
                     self.notify(.showError(error))
             }
         }
+    }
+    
+    func presentSelection() {
+        delegate?.navigate(to: .presentBaseSelection)
     }
     
     private func notify(_ output: CurrencyListViewModelOutput) {

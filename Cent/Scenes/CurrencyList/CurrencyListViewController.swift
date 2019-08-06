@@ -26,7 +26,16 @@ final class CurrencyListViewController : UIViewController, Alertable, Loadable {
         didSet { collectionView.backgroundColor = .clear }
     }
     
-    
+    lazy var baseCurrencyBarButton: UIButton = {
+        let button = UIButton()
+        button.layer.cornerRadius = 10
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.white.cgColor
+        button.setTitle("  Eur  ", for: .normal)
+        button.setTitleColor(.white, for: .normal)
+        button.addTarget(self, action: #selector(navigateToBaseSelection), for: .touchUpInside)
+        return button
+    }()
     
     //MARK: Variables
 
@@ -47,7 +56,9 @@ final class CurrencyListViewController : UIViewController, Alertable, Loadable {
 
 //MARK: Actions
 extension CurrencyListViewController {
-  
+    @objc func navigateToBaseSelection() {
+        viewModel.presentSelection()
+    }
 }
 
 //MARK: View Model Delegate
@@ -70,7 +81,15 @@ extension CurrencyListViewController : CurrencyListViewModelDelegate {
     }
 
      func navigate(to route: CurrencyListRoute) {
-        
+        switch route {
+            case .detail(_):
+                print("")
+            case .presentBaseSelection:
+                let baseSelectionVC = BaseSelectionBuilder.make()
+                baseSelectionVC.modalTransitionStyle = .crossDissolve
+                baseSelectionVC.modalPresentationStyle = .overCurrentContext
+                self.present(baseSelectionVC, animated: true, completion: nil)
+        }
     }
 }
 

@@ -24,10 +24,12 @@ extension CurrencyListViewController {
     }
 
     private func setNavigationBarItems() {
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: baseCurrencyBarButton)
     }
 
-    private func configureNavigationBar() {
+    private func configureNavigationBar() {        
         navigationController?.setColor(UIColor(hexString: "#454662"))
+        navigationItem.title = "Cent"
+        navigationController?.setTitleColor(.white)
     }
 }

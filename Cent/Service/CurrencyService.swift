@@ -9,7 +9,7 @@
 import Moya
 
 ///Service Aliases
-typealias CurrencyInfoResult   = (Swift.Result<Bool, Error>) -> ()
+typealias CurrencyInfoResult   = (Swift.Result<CurrencyInfo, Error>) -> ()
 typealias RangedCurrencyResult = (Swift.Result<[Currency], Error>) -> ()
 
 ///Currency service protocol, used for test
@@ -30,7 +30,7 @@ class CurrencyService: CurrencyServiceProtocol {
             switch result {
                 case .success(let response):
                     self.info = try! JSONDecoder().decode(CurrencyInfo.self, from: response.data)
-                    completion(.success(true))
+                    completion(.success(self.info!))
                 case .failure(let error):
                     completion(.failure(CentError.serviceError(error: error.localizedDescription)))
             }

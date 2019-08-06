@@ -37,6 +37,13 @@
 		05D6351C22F810CC005ECD54 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6351B22F810CC005ECD54 /* Currency.swift */; };
 		05D6351E22F83BB4005ECD54 /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D6351D22F83BB4005ECD54 /* Date+Ext.swift */; };
 		05E8341322F9726600B67D2A /* Navigation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8341222F9726600B67D2A /* Navigation+Ext.swift */; };
+		05E8341A22F986F900B67D2A /* BaseSelection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 05E8341422F986F900B67D2A /* BaseSelection.storyboard */; };
+		05E8341B22F986F900B67D2A /* BaseSelectionContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8341522F986F900B67D2A /* BaseSelectionContract.swift */; };
+		05E8341C22F986F900B67D2A /* BaseSelectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8341622F986F900B67D2A /* BaseSelectionLayout.swift */; };
+		05E8341D22F986F900B67D2A /* BaseSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8341722F986F900B67D2A /* BaseSelectionViewController.swift */; };
+		05E8341E22F986F900B67D2A /* BaseSelectionBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8341822F986F900B67D2A /* BaseSelectionBuilder.swift */; };
+		05E8341F22F986F900B67D2A /* BaseSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8341922F986F900B67D2A /* BaseSelectionViewModel.swift */; };
+		05E8342422F99A2300B67D2A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8342322F99A2300B67D2A /* HeaderView.swift */; };
 		0D9A8CB3D316625CD842FB75 /* Pods_Cent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175A4052C870644301A419F /* Pods_Cent.framework */; };
 		4DD0EBFEFB6D2A6E82375427 /* Pods_CentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705DB6518C46408BA76F874C /* Pods_CentTests.framework */; };
 /* End PBXBuildFile section */
@@ -84,6 +91,13 @@
 		05D6351B22F810CC005ECD54 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		05D6351D22F83BB4005ECD54 /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		05E8341222F9726600B67D2A /* Navigation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Ext.swift"; sourceTree = "<group>"; };
+		05E8341422F986F900B67D2A /* BaseSelection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BaseSelection.storyboard; sourceTree = "<group>"; };
+		05E8341522F986F900B67D2A /* BaseSelectionContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionContract.swift; sourceTree = "<group>"; };
+		05E8341622F986F900B67D2A /* BaseSelectionLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionLayout.swift; sourceTree = "<group>"; };
+		05E8341722F986F900B67D2A /* BaseSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionViewController.swift; sourceTree = "<group>"; };
+		05E8341822F986F900B67D2A /* BaseSelectionBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionBuilder.swift; sourceTree = "<group>"; };
+		05E8341922F986F900B67D2A /* BaseSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionViewModel.swift; sourceTree = "<group>"; };
+		05E8342322F99A2300B67D2A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		705DB6518C46408BA76F874C /* Pods_CentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1CE1EF1EB0A170F28BC026 /* Pods-Cent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cent.debug.xcconfig"; path = "Target Support Files/Pods-Cent/Pods-Cent.debug.xcconfig"; sourceTree = "<group>"; };
 		88AA5B5AE497BA4AB40E63E6 /* Pods-CentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CentTests.debug.xcconfig"; path = "Target Support Files/Pods-CentTests/Pods-CentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -228,8 +242,8 @@
 		05CC1E6222F0DBB1008CCD98 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				05E8341122F971CF00B67D2A /* CurrencyBase */,
 				05CC1E6322F0DBB9008CCD98 /* CurrencyList */,
+				05E8341122F971CF00B67D2A /* CurrencyBase */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -260,8 +274,23 @@
 		05E8341122F971CF00B67D2A /* CurrencyBase */ = {
 			isa = PBXGroup;
 			children = (
+				05E8341422F986F900B67D2A /* BaseSelection.storyboard */,
+				05E8341822F986F900B67D2A /* BaseSelectionBuilder.swift */,
+				05E8341522F986F900B67D2A /* BaseSelectionContract.swift */,
+				05E8341722F986F900B67D2A /* BaseSelectionViewController.swift */,
+				05E8341922F986F900B67D2A /* BaseSelectionViewModel.swift */,
+				05E8341622F986F900B67D2A /* BaseSelectionLayout.swift */,
+				05E8342022F993A100B67D2A /* New Group */,
 			);
 			path = CurrencyBase;
+			sourceTree = "<group>";
+		};
+		05E8342022F993A100B67D2A /* New Group */ = {
+			isa = PBXGroup;
+			children = (
+				05E8342322F99A2300B67D2A /* HeaderView.swift */,
+			);
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		33E655DA3BF95EFDD5B02477 /* Pods */ = {
@@ -374,6 +403,7 @@
 				05CC1E5C22F0D97F008CCD98 /* CurrencyInfo.json in Resources */,
 				05D6351822F44BB4005ECD54 /* CurrencyCell.xib in Resources */,
 				05CC1E2E22F0C82F008CCD98 /* Assets.xcassets in Resources */,
+				05E8341A22F986F900B67D2A /* BaseSelection.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -470,10 +500,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05E8341B22F986F900B67D2A /* BaseSelectionContract.swift in Sources */,
 				05D6351C22F810CC005ECD54 /* Currency.swift in Sources */,
 				05CC1E6D22F0DBD3008CCD98 /* CurrencyListViewController.swift in Sources */,
 				05CC1E6F22F0DBD3008CCD98 /* CurrencyListViewModel.swift in Sources */,
 				05CC1E5822F0D90D008CCD98 /* Error.swift in Sources */,
+				05E8341F22F986F900B67D2A /* BaseSelectionViewModel.swift in Sources */,
 				05CC1E4A22F0C9C6008CCD98 /* CentAPI.swift in Sources */,
 				05D6351A22F44C2E005ECD54 /* Color+Ext.swift in Sources */,
 				05CC1E4F22F0CBE0008CCD98 /* Array+Ext.swift in Sources */,
@@ -482,6 +514,7 @@
 				05D6351E22F83BB4005ECD54 /* Date+Ext.swift in Sources */,
 				05CC1E2722F0C82E008CCD98 /* AppDelegate.swift in Sources */,
 				05E8341322F9726600B67D2A /* Navigation+Ext.swift in Sources */,
+				05E8341D22F986F900B67D2A /* BaseSelectionViewController.swift in Sources */,
 				05D6351722F44BB4005ECD54 /* CurrencyCell.swift in Sources */,
 				05CC1E4D22F0CB21008CCD98 /* Optional+Ext.swift in Sources */,
 				05CC1E6E22F0DBD3008CCD98 /* CurrencyListBuilder.swift in Sources */,
@@ -489,7 +522,10 @@
 				05CC1E6C22F0DBD3008CCD98 /* CurrencyListLayout.swift in Sources */,
 				05CC1E5622F0D900008CCD98 /* CurrencyService.swift in Sources */,
 				05CC1E5122F0D4F9008CCD98 /* ViewController+Ext.swift in Sources */,
+				05E8341E22F986F900B67D2A /* BaseSelectionBuilder.swift in Sources */,
 				05CC1E5422F0D6B6008CCD98 /* CurrencyInfo.swift in Sources */,
+				05E8341C22F986F900B67D2A /* BaseSelectionLayout.swift in Sources */,
+				05E8342422F99A2300B67D2A /* HeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

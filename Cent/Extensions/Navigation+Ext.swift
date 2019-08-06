@@ -9,9 +9,12 @@
 import UIKit
 
 extension UINavigationController {
-    
     func setColor(_ color: UIColor) {
-        navigationBar.tintColor = color
         navigationBar.barTintColor = color
+    }
+    
+    func setTitleColor(_ color: UIColor) {
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: color,
+                                             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18, weight: .medium)]
     }
 }

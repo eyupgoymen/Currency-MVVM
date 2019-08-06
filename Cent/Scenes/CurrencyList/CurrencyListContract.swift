@@ -12,9 +12,10 @@ import Foundation
 
 protocol CurrencyListViewModelProtocol {
     var delegate : CurrencyListViewModelDelegate? { get set }
-    var currencyService: CurrencyService! { get set }
+    var currencyService: CurrencyServiceProtocol! { get set }
     func fetchCurrencyInfo()
     func fetchRangedCurrency(startDate: String, endDate: String, based: String)
+    func presentSelection()
 }
 
 // ViewModel to view
@@ -27,7 +28,8 @@ enum CurrencyListViewModelOutput {
 
 //Navigates
 enum CurrencyListRoute {
-    case detail(CurrencyListViewModelProtocol)
+    case detail(Currency)
+    case presentBaseSelection
 }
 
 
