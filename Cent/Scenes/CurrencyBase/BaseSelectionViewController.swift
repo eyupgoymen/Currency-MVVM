@@ -76,6 +76,10 @@ extension BaseSelectionViewController: TableViewProtocol {
         return headerView
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.currencySelected(at: indexPath.row)
+    }
+    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }

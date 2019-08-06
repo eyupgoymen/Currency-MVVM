@@ -23,6 +23,12 @@ final class BaseSelectionViewModel : BaseSelectionViewModelProtocol {
         notify(.gotCurrencies(currencies))
     }
     
+    func currencySelected(at index: Int) {
+        Constants.base = currencies[index].code.uppercased()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "newBaseSelected"), object: nil)
+        delegate?.navigate(to: .back)
+    }
+    
     func notify(_ output: BaseSelectionViewModelOutput) {
         delegate?.handleViewModelOutput(output)
     }

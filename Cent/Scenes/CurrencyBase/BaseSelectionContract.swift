@@ -12,6 +12,7 @@ protocol BaseSelectionViewModelProtocol {
     var  delegate : BaseSelectionViewModelDelegate? { get set }
     func navigateToBack()
     func loadView()
+    func currencySelected(at index: Int)
 }
 
 // ViewModel to view

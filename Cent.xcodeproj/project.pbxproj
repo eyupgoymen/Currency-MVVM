@@ -46,6 +46,7 @@
 		05E8342422F99A2300B67D2A /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8342322F99A2300B67D2A /* HeaderView.swift */; };
 		05E8342B22F99F2300B67D2A /* BaseSelectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8342922F99F2300B67D2A /* BaseSelectionCell.swift */; };
 		05E8342C22F99F2300B67D2A /* BaseSelectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05E8342A22F99F2300B67D2A /* BaseSelectionCell.xib */; };
+		05E8343022F9AD3000B67D2A /* Double+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05E8342F22F9AD3000B67D2A /* Double+Ext.swift */; };
 		0D9A8CB3D316625CD842FB75 /* Pods_Cent.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F175A4052C870644301A419F /* Pods_Cent.framework */; };
 		4DD0EBFEFB6D2A6E82375427 /* Pods_CentTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 705DB6518C46408BA76F874C /* Pods_CentTests.framework */; };
 /* End PBXBuildFile section */
@@ -102,6 +103,7 @@
 		05E8342322F99A2300B67D2A /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		05E8342922F99F2300B67D2A /* BaseSelectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSelectionCell.swift; sourceTree = "<group>"; };
 		05E8342A22F99F2300B67D2A /* BaseSelectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseSelectionCell.xib; sourceTree = "<group>"; };
+		05E8342F22F9AD3000B67D2A /* Double+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Double+Ext.swift"; sourceTree = "<group>"; };
 		705DB6518C46408BA76F874C /* Pods_CentTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CentTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D1CE1EF1EB0A170F28BC026 /* Pods-Cent.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cent.debug.xcconfig"; path = "Target Support Files/Pods-Cent/Pods-Cent.debug.xcconfig"; sourceTree = "<group>"; };
 		88AA5B5AE497BA4AB40E63E6 /* Pods-CentTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CentTests.debug.xcconfig"; path = "Target Support Files/Pods-CentTests/Pods-CentTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				05D6351922F44C2E005ECD54 /* Color+Ext.swift */,
 				05D6351D22F83BB4005ECD54 /* Date+Ext.swift */,
 				05E8341222F9726600B67D2A /* Navigation+Ext.swift */,
+				05E8342F22F9AD3000B67D2A /* Double+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				05D6351722F44BB4005ECD54 /* CurrencyCell.swift in Sources */,
 				05CC1E4D22F0CB21008CCD98 /* Optional+Ext.swift in Sources */,
 				05CC1E6E22F0DBD3008CCD98 /* CurrencyListBuilder.swift in Sources */,
+				05E8343022F9AD3000B67D2A /* Double+Ext.swift in Sources */,
 				05CC1E6B22F0DBD3008CCD98 /* CurrencyListContract.swift in Sources */,
 				05CC1E6C22F0DBD3008CCD98 /* CurrencyListLayout.swift in Sources */,
 				05CC1E5622F0D900008CCD98 /* CurrencyService.swift in Sources */,

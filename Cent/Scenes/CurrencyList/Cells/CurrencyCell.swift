@@ -49,9 +49,9 @@ class CurrencyCell: UICollectionViewCell {
     }
     
     private func currencySetted() {
-        valueLabel.text =  "\(currency!.value)"
+        valueLabel.text = "\(currency!.value.rounded(toPlaces: 4))"
         currencyNameLabel.text = currency!.name
         symbolLabel.text = currency!.symbol
-        changeRatioLabel.text = String(format: "%.2f", "\(currency!.ratio)")
+        changeRatioLabel.text = "\(currency!.ratio.rounded(toPlaces: 4))"
     }
 }

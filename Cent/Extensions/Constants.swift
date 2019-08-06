@@ -10,3 +10,7 @@ import UIKit
 
 typealias CollectionViewProtocol = UICollectionViewDelegate & UICollectionViewDataSource & UICollectionViewDelegateFlowLayout
 typealias TableViewProtocol = UITableViewDelegate & UITableViewDataSource
+
+struct Constants {
+    static var base = "EUR"
+}

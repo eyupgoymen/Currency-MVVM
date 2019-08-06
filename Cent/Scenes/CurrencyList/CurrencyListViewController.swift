@@ -44,6 +44,12 @@ final class CurrencyListViewController : UIViewController, Alertable, Loadable {
         setRegisters()
         setLayout()
         viewModel.fetchCurrencyInfo()
+        NotificationCenter.default.addObserver(self, selector: #selector(newBaseSelected), name: NSNotification.Name("newBaseSelected"), object: nil)
+    }
+    
+    @objc private func newBaseSelected() {
+        viewModel.fetchRangedCurrency(startDate: Date.yesterday.getFormattedDateAsString(), endDate: Date().getFormattedDateAsString(), based: Constants.base)
+        baseCurrencyBarButton.setTitle(Constants.base, for: .normal)
     }
 
     private func setRegisters() {
@@ -77,7 +83,7 @@ extension CurrencyListViewController : CurrencyListViewModelDelegate {
                 collectionView.reloadData()
             
             case .infoFetched:
-                viewModel.fetchRangedCurrency(startDate: Date.yesterday.getFormattedDateAsString(), endDate: Date().getFormattedDateAsString(), based: "EUR")
+                viewModel.fetchRangedCurrency(startDate: Date.yesterday.getFormattedDateAsString(), endDate: Date().getFormattedDateAsString(), based: Constants.base)
         }
     }
 
