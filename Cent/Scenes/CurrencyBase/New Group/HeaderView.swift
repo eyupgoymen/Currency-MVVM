@@ -16,6 +16,7 @@ final class HeaderView: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(UIImage(named: "cancel"), for: .normal)
+        button.addTarget(self, action: #selector(close), for: .touchUpInside)
         return button
     }()
     
@@ -29,6 +30,10 @@ final class HeaderView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        setLayout()
+    }
+    
+    private func setLayout() {
         addSubview(closeButton)
         addSubview(titleLabel)
         
@@ -41,6 +46,7 @@ final class HeaderView: UIView {
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             titleLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 24)
         ])
+        backgroundColor = .white
     }
     
     @objc func close() {

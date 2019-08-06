@@ -25,6 +25,11 @@ extension CurrencyListViewController {
 
     private func setNavigationBarItems() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: baseCurrencyBarButton)
+        baseCurrencyBarButton.isEnabled = false
+    }
+    
+    func enableBaseCurrencyBarButton() {
+        baseCurrencyBarButton.isEnabled = true
     }
 
     private func configureNavigationBar() {        

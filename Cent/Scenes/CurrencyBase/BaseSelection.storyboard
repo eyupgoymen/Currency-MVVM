@@ -22,8 +22,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QEQ-Ct-can">
-                                <rect key="frame" x="24" y="173.5" width="327" height="340"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QEQ-Ct-can">
+                                <rect key="frame" x="48" y="173.5" width="279" height="340"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="340" id="PZq-6n-qgU"/>
@@ -34,8 +34,7 @@
                         <constraints>
                             <constraint firstItem="zFy-8p-Xxq" firstAttribute="top" secondItem="BNZ-bO-rhc" secondAttribute="top" id="EH2-bO-EXW"/>
                             <constraint firstItem="QEQ-Ct-can" firstAttribute="centerX" secondItem="HgA-Aw-ocO" secondAttribute="centerX" id="Krs-Ma-klf"/>
-                            <constraint firstItem="HgA-Aw-ocO" firstAttribute="trailing" secondItem="QEQ-Ct-can" secondAttribute="trailing" constant="24" id="QcS-oe-6PT"/>
-                            <constraint firstItem="QEQ-Ct-can" firstAttribute="leading" secondItem="HgA-Aw-ocO" secondAttribute="leading" constant="24" id="RIK-6e-T39"/>
+                            <constraint firstItem="QEQ-Ct-can" firstAttribute="leading" secondItem="HgA-Aw-ocO" secondAttribute="leading" constant="48" id="RIK-6e-T39"/>
                             <constraint firstItem="zFy-8p-Xxq" firstAttribute="bottom" secondItem="HgA-Aw-ocO" secondAttribute="bottom" id="Up5-uP-dyP"/>
                             <constraint firstItem="QEQ-Ct-can" firstAttribute="centerY" secondItem="HgA-Aw-ocO" secondAttribute="centerY" id="eKQ-VI-fOD"/>
                             <constraint firstItem="zFy-8p-Xxq" firstAttribute="leading" secondItem="HgA-Aw-ocO" secondAttribute="leading" id="rEv-Bc-u9F"/>

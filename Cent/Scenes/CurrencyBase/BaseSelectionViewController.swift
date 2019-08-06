@@ -10,7 +10,7 @@
 import Foundation
 import UIKit
 
-final class BaseSelectionViewController : UIViewController {
+final class BaseSelectionViewController : UIViewController, Alertable {
     
     //MARK: View Model and Router
     var viewModel: BaseSelectionViewModelProtocol! {
@@ -23,24 +23,31 @@ final class BaseSelectionViewController : UIViewController {
     
     
     //MARK: Variables
+    var currencies = [Currency]()
 
      override func viewDidLoad() {
         super.viewDidLoad()
         setRegisters()
         setLayout()
-        viewModel.fetchCurrencyInfo()
+        viewModel.loadView()
     }
 
     private func setRegisters() {
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.register(UINib(nibName: "BaseSelectionCell", bundle: nil), forCellReuseIdentifier: "BaseSelectionCell")
     }
 }
 
 //MARK: View Model Delegate
 extension BaseSelectionViewController : BaseSelectionViewModelDelegate {
     func handleViewModelOutput(_ output: BaseSelectionViewModelOutput) {
-        
+        switch output {
+            case .gotCurrencies(let currencies):
+                self.currencies = currencies
+                tableView.reloadData()
+        }
     }
 
      func navigate(to route: BaseSelectionRoute) {
@@ -54,11 +61,13 @@ extension BaseSelectionViewController : BaseSelectionViewModelDelegate {
 //MARK: Table view and collection view methods here
 extension BaseSelectionViewController: TableViewProtocol {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return currencies.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BaseSelectionCell", for: indexPath) as! BaseSelectionCell
+        cell.currency = currencies[indexPath.row]
+        return cell
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -68,6 +77,10 @@ extension BaseSelectionViewController: TableViewProtocol {
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
 }

@@ -73,6 +73,7 @@ extension CurrencyListViewController : CurrencyListViewModelDelegate {
             
             case .currencyFetched(let currencies):
                 self.currencies = currencies
+                enableBaseCurrencyBarButton()
                 collectionView.reloadData()
             
             case .infoFetched:
@@ -85,7 +86,7 @@ extension CurrencyListViewController : CurrencyListViewModelDelegate {
             case .detail(_):
                 print("")
             case .presentBaseSelection:
-                let baseSelectionVC = BaseSelectionBuilder.make()
+                let baseSelectionVC = BaseSelectionBuilder.make(currencies: currencies)
                 baseSelectionVC.modalTransitionStyle = .crossDissolve
                 baseSelectionVC.modalPresentationStyle = .overCurrentContext
                 self.present(baseSelectionVC, animated: true, completion: nil)
