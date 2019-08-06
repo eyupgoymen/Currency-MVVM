@@ -26,6 +26,8 @@ final class CurrencyListViewController : UIViewController, Alertable, Loadable {
         didSet { collectionView.backgroundColor = .clear }
     }
     
+    
+    
     //MARK: Variables
 
      override func viewDidLoad() {
@@ -63,7 +65,7 @@ extension CurrencyListViewController : CurrencyListViewModelDelegate {
                 collectionView.reloadData()
             
             case .infoFetched:
-                viewModel.fetchLatestCurrency(base: "EUR")
+                viewModel.fetchRangedCurrency(startDate: Date.yesterday.getFormattedDateAsString(), endDate: Date().getFormattedDateAsString(), based: "EUR")
         }
     }
 

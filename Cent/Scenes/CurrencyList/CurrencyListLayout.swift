@@ -28,6 +28,6 @@ extension CurrencyListViewController {
     }
 
     private func configureNavigationBar() {
-
+        navigationController?.setColor(UIColor(hexString: "#454662"))
     }
 }

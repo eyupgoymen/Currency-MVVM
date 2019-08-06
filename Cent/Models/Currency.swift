@@ -13,11 +13,13 @@ struct Currency {
     var symbol: String = ""
     var name: String = ""
     var value: Double = 0.0
+    var ratio: Double = 0.0
     
-    init(info: SubCurrencyInfo, latestCurrency: BaseCurrency) {
+    init(info: SubCurrencyInfo, todayCurrency: BaseCurrency, prevCurrency: BaseCurrency) {
         self.code = info.code
         self.symbol = info.symbol
         self.name = info.name
-        self.value = latestCurrency.value
+        self.value = todayCurrency.value
+        self.ratio = (todayCurrency.value - prevCurrency.value) / prevCurrency.value * 100
     }
 }

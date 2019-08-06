@@ -21,7 +21,7 @@ class ServiceTest: XCTestCase {
     
     func testLatestCurrency() throws {
         let data = try getDataFromBundle(fileName: "LatestCurrency", ext: "json")
-        let currency = try JSONDecoder().decode(LatestCurrency.self, from: data)
+        let currency = try JSONDecoder().decode(RangedCurrency.self, from: data)
         let currencyArray = currency.getCurrencyArray()
         
         XCTAssertEqual(currency.rates.count, 33)

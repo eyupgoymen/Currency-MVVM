@@ -8,12 +8,16 @@
 
 import Foundation
 
-struct LatestCurrency: Codable {
-    var rates: [String : Double]
+class RangedCurrency: Codable {
+    var rates: [String: Double]
+    
+    init(rates: [String: Double]) {
+        self.rates = rates
+    }
     
     func getCurrencyArray() -> [BaseCurrency] {
         var currencies = [BaseCurrency]()
-        _ = rates.map { currencies.append(BaseCurrency(code: $0.key, value: $0.value)) }
+        rates.forEach { currencies.append(BaseCurrency(code: $0.key, value: $0.value))  }
         return currencies
     }
 }

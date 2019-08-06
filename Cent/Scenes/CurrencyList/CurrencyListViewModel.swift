@@ -14,6 +14,7 @@ final class CurrencyListViewModel : CurrencyListViewModelProtocol {
     //MARK: Delegate
     var delegate: CurrencyListViewModelDelegate?
     var currencyService: CurrencyService!
+    var currencies = [Currency]()
     
     //Service injection will be here with protocols
     init(currencyService: CurrencyService) {
@@ -37,10 +38,10 @@ final class CurrencyListViewModel : CurrencyListViewModelProtocol {
         }
     }
     
-    func fetchLatestCurrency(base: String) {
+    func fetchRangedCurrency(startDate: String, endDate: String, based: String) {
         notify(.setLoading(true))
         
-        currencyService.getLatestCurrency(basedOn: base) { [weak self] (result) in
+        currencyService.getCurrencyBetween(start: startDate, end: endDate, basedOn: based) { [weak self] (result) in
             guard let self = self else { return }
             self.notify(.setLoading(false))
             
@@ -54,7 +55,7 @@ final class CurrencyListViewModel : CurrencyListViewModelProtocol {
         }
     }
     
-     private func notify(_ output: CurrencyListViewModelOutput) {
+    private func notify(_ output: CurrencyListViewModelOutput) {
        delegate?.handleViewModelOutput(output)
     }
 }

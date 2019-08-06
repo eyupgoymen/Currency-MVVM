@@ -10,19 +10,20 @@ import Moya
 
 ///Service Aliases
 typealias CurrencyInfoResult   = (Swift.Result<Bool, Error>) -> ()
-typealias LatestCurrencyResult = (Swift.Result<[Currency], Error>) -> ()
+typealias RangedCurrencyResult = (Swift.Result<[Currency], Error>) -> ()
 
 ///Currency service protocol, used for test
 protocol CurrencyServiceProtocol {
     var info: CurrencyInfo? { get set }
     
     func getCurrencyInfo(completion: @escaping CurrencyInfoResult)
-    func getLatestCurrency(basedOn: String, completion: @escaping LatestCurrencyResult)
+    func getCurrencyBetween(start: String, end: String, basedOn: String, completion: @escaping RangedCurrencyResult)
 }
 
 class CurrencyService: CurrencyServiceProtocol {
-    private let apiProvider = MoyaProvider<CentAPI>()
+    private let apiProvider = MoyaProvider<CentAPI>(plugins: [NetworkLoggerPlugin(verbose: true)])
     internal var info: CurrencyInfo?
+    private let dispatchGroup = DispatchGroup()
     
     internal func getCurrencyInfo(completion: @escaping CurrencyInfoResult) {
         apiProvider.request(.getCurrencyInfo) { (result) in
@@ -35,32 +36,59 @@ class CurrencyService: CurrencyServiceProtocol {
             }
         }
     }
-    
-    func getLatestCurrency(basedOn: String, completion: @escaping LatestCurrencyResult) {
+
+    func getCurrencyBetween(start: String, end: String, basedOn: String, completion: @escaping RangedCurrencyResult) {
         assert(info != nil, "Invalid info data")
         
-        apiProvider.request(.getLatest(based: basedOn)) { [weak self] (result) in
-            guard let self = self else { return }
-            
+        var previousRangedCurrency: RangedCurrency?
+        var todayRangedCurrenct: RangedCurrency?
+        var serviceError: Error?
+        
+        dispatchGroup.enter()
+        apiProvider.request(.getCurrency(date: start, based: basedOn)) { (result) in
             switch result {
                 case .success(let response):
-                    let latestCurrency = try! JSONDecoder().decode(LatestCurrency.self, from: response.data)
-                    var currencies = [Currency]()
-                    
-                    self.info!.response.currencies.forEach({ (categoryInfo) in
-                        let latestCurrencyBasedOnFilter = latestCurrency.getCurrencyArray().first(where: { (baseCurrency) -> Bool in
-                            return categoryInfo.code.uppercased() == baseCurrency.code.uppercased()
-                        })
-                        
-                        if let latestCurrencyBasedOnFilter = latestCurrencyBasedOnFilter{
-                            currencies.append(Currency(info: categoryInfo, latestCurrency: latestCurrencyBasedOnFilter))
-                        }
-                    })
-                    
-                    completion(.success(currencies))
+                    previousRangedCurrency = try! JSONDecoder().decode(RangedCurrency.self, from: response.data)
+                    self.dispatchGroup.leave()
                 case .failure(let error):
-                    completion(.failure(CentError.serviceError(error: error.localizedDescription)))
+                    serviceError = CentError.serviceError(error: error.localizedDescription)
+                    self.dispatchGroup.leave()
             }
+        }
+        
+        dispatchGroup.enter()
+        apiProvider.request(.getCurrency(date: end, based: basedOn)) { (result) in
+            switch result {
+                case .success(let response):
+                    todayRangedCurrenct = try! JSONDecoder().decode(RangedCurrency.self, from: response.data)
+                    self.dispatchGroup.leave()
+                case .failure(let error):
+                    serviceError = CentError.serviceError(error: error.localizedDescription)
+                    self.dispatchGroup.leave()
+            }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            if let serviceError = serviceError {
+                 completion(.failure(serviceError))
+                return
+            }
+            
+            var currencies = [Currency]()
+            self.info!.response.currencies.forEach({ (subCurrency) in
+                let todaySubCurrency = todayRangedCurrenct!.getCurrencyArray().first(where: { (baseCurrency) -> Bool in
+                    return subCurrency.code == baseCurrency.code
+                })
+                
+                let previousSubCurrency = previousRangedCurrency!.getCurrencyArray().first(where: { (baseCurrency) -> Bool in
+                    return subCurrency.code == baseCurrency.code
+                })
+                
+                if let todaySubCurrency = todaySubCurrency, let previousSubCurrency = previousSubCurrency {
+                    currencies.append(Currency(info: subCurrency, todayCurrency: todaySubCurrency, prevCurrency: previousSubCurrency))
+                }
+            })
+            completion(.success(currencies))
         }
     }
 }

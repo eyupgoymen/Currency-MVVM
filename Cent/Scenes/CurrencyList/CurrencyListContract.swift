@@ -14,7 +14,7 @@ protocol CurrencyListViewModelProtocol {
     var delegate : CurrencyListViewModelDelegate? { get set }
     var currencyService: CurrencyService! { get set }
     func fetchCurrencyInfo()
-    func fetchLatestCurrency(base: String)
+    func fetchRangedCurrency(startDate: String, endDate: String, based: String)
 }
 
 // ViewModel to view
